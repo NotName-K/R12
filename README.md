@@ -57,3 +57,80 @@ Devuelve True si todos los caracteres del string son mayúsculas y hay al menos 
 "WELCOME!".isupper()      # True (los signos de exclamación no afectan el resultado)
 ```
 ## Procesar Archivo
+### Consonantes Y Vocales
+```python
+def voc(a, c):
+    # Inicializa el contador de letras a 0
+    k = 0
+    
+    # Asigna el parámetro 'a' (cadena de caracteres) a 'l'
+    l: str = a
+    
+    # Itera sobre cada carácter en 'l'
+    for i in l:
+        # Suma el número de veces que el carácter 'i' aparece en la cadena 'c'
+        k += c.count(i)
+    
+    # Devuelve el total de caracteres contados
+    return k
+
+if __name__ == "__main__":
+    # Abre el archivo "mbox.txt" en modo lectura y lo asigna a 'file'
+    with open("mbox.txt", "r") as file:
+        # Lee todo el contenido del archivo y lo convierte a minúsculas
+        c = file.read().lower()  
+    
+    # Llama a la función 'voc' para contar la cantidad de vocales en 'c'
+    l = voc("aeiou", c)
+    
+    # Llama a la función 'voc' para contar la cantidad de consonantes en 'c'
+    m = voc("bcdfghjklmnpqrstvwxyz", c)
+
+    # Imprime la cantidad total de vocales encontradas
+    print(f"Cantidad de Vocales: {l}")
+    
+    # Imprime la cantidad total de consonantes encontradas
+    print(f"Cantidad de Consonantes: {m}")
+```
+### 50 Palabras mas repetidas 
+```python
+def mostwords(a, n):
+    # Abre el archivo especificado por 'a' en modo lectura
+    with open(a, "r") as file:
+        # Lee todo el contenido del archivo y convierte el texto a minúsculas
+        tx = file.read().lower()
+
+    # Define los delimitadores para dividir el texto
+    d = " \t\n\r,.!?;:"
+    # Reemplaza cada delimitador con un espacio en blanco
+    for i in d:
+        tx = tx.replace(i, " ")
+    # Divide el texto en palabras usando los espacios como delimitadores
+    pb = tx.split()
+
+    # Crea un diccionario para contar la frecuencia de cada palabra
+    cnum = {}
+    for plb in pb:
+        if plb in cnum:
+            # Si la palabra ya está en el diccionario, incrementa su contador
+            cnum[plb] += 1
+        else:
+            # Si la palabra no está en el diccionario, añádela con un contador de 1
+            cnum[plb] = 1
+
+    # Ordena el diccionario de palabras por frecuencia en orden descendente
+    po = sorted(cnum.items(), key=lambda x: x[1], reverse=True)
+
+    # Obtiene las 'n' palabras más comunes
+    pmc = po[:n]
+    return pmc
+
+if __name__ == "__main__":
+    # Nombre del archivo que se va a analizar
+    a = "mbox.txt"
+    # Llama a la función 'mostwords' para obtener las 50 palabras más frecuentes
+    pmb = mostwords(a, 50)
+    # Imprime cada palabra y su frecuencia
+    for p, f in pmb:
+        print(f"{p}: {f}")
+```
