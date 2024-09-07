@@ -56,5 +56,4 @@ Devuelve True si todos los caracteres del string son mayúsculas y hay al menos 
 "WELCOME".isupper()       # True
 "WELCOME!".isupper()      # True (los signos de exclamación no afectan el resultado)
 ```
-
 ## Procesar Archivo
