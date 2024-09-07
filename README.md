@@ -1,5 +1,7 @@
 # R12
 Reto 12 Programación
+Kevin Daniel Castellanos Peña
+c.c. 1052338203
 
 ## Consulta de Metodos de Strings:
 ### endswith():
